@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Landing Page</title>
+
+    <style>
+        html {
+        scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #2d2f36, #1b1d21);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #e0e0e0;
+            scroll-behavior: smooth; /* CSS smooth scrolling */
+        }
+
+        .topnav {
+            width: 100%;
+            background-color: #1b1d21;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .topnav a {
+            margin: 0 15px;
+            color: #f6f2ee;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .topnav a:hover {
+            background-color: #ffffff;
+            color: #000;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+
+        .topnav a.active {
+            background-color: #ffffff;
+            color: #000;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+
+        section {
+            padding: 60px 20px 100px; /* Add padding to account for fixed navbar */
+            text-align: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        #home {
+            background: linear-gradient(135deg, #2d2f36, #1b1d21);
+        }
+
+        #project {
+            background: linear-gradient(135deg, #1f2226, #141518);
+        }
+
+        #contact {
+            background: linear-gradient(135deg, #1b1d21, #101113);
+        }
+
+        #about {
+            background: linear-gradient(135deg, #141518, #0a0a0b);
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-top: 80px; /* Increase margin to account for fixed navbar */
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 20px auto;
+            line-height: 1.6;
+            color: #d1d1d1;
+        }
+
+        .container{
+            width: 100%;
+            height: 100vh;
+
+            color: #fff;
+
+
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a class="about" href="#about">About</a>
+        <a class="contact" href="#contact">Contact</a>
+        <a class="project" href="#project">Project</a>
+    </div>
+
+    <section id="home">
+        <div class="container">
+
+        <h1>Hello i'm <span class="auto-type"></span> </h1>
+        </div>
+    </section>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <script>
+        var typed = new  Typed(".auto-type", { strings: ["Fullstack", "Sleeping","Kennedy", "Eating", "Coding"], 
+        typeSpeed: 50,
+        backSpeed: 50,
+        loop:true
+
+        })
+    </script>
+    
+    <section id="about">
+        <h1>About</h1>
+        <p>This is the article section. Add your latest articles or blog posts here to engage your audience.</p>
+    </section>
+    
+    <section id="contact">
+        <h1>Contact</h1>
+        <p>This is the contact section. Provide your contact information or a contact form for visitors to reach out to you.</p>
+    </section>
+    
+    <section id="project">
+        <h1>Project</h1>
+        <p>This is the about section. Share information about yourself, your team, or your business here.</p>
+    </section>
+    
+    <script>
+
+        
+        document.querySelectorAll('.topnav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.topnav a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.topnav a');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(currentSection)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
